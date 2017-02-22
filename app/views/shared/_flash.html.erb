@@ -1,0 +1,21 @@
+<% flash.each do |key, value| %>
+  <% if key != "danger" %>
+    <div class="alert alert-<%= key %>" style="background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d;">
+      <%= raw value unless value.blank? %>
+    </div>
+  <% else %>
+    <div class="alert alert-<%= key %>">
+      <% messages = value.split(": ").last.split(", ") %>
+      <% title_err = value.split(": ").first %>
+      <% unless messages.include?(title_err) %>
+        <%= value.split(": ").first %>:
+      <% end %>
+      <ul style="color: red; padding-left: 20px">
+        <% messages.try(:each) do |msg| %>
+          <li style="list-style-type: square;"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+

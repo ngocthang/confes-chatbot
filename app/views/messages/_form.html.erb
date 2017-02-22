@@ -1,0 +1,21 @@
+<%= form_for @message, html: {id: ""} do |f| %> 
+  <div class="col-md-12 flash-container">
+    <%= render "shared/flash", flash: flash %>
+  </div>
+  <div class="col-md-12 error-messages">
+    <%= render "shared/error_messages", object: @message %>
+  </div>
+  <div class="row control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      <%= f.text_area :content, {style: "height: 350px;", row: 25, class: "form-control", placeholder: "Message", id: "message", required: true} %>
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <br>
+  <div id="success"></div>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <%= f.submit "Save", class: "btn btn-success btn-lg" %>
+    </div>
+  </div>
+<% end %>
