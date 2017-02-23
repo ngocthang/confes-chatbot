@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="panel panel-default" style="margin-top:150px">
 
-<p>
-  <strong>Content:</strong>
+  <p>
+  <h2>Content</h2>
+  <br>
   <%= @message.content %>
-</p>
+  </p>
 
-<p>
+  <p>
   <strong>Status:</strong>
   <%= @message.status %>
-</p>
+  </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+  <%= link_to 'Back', messages_path, class: "btn btn-success"%>
+
+</div>
+</div>

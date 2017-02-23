@@ -1,29 +1,48 @@
+<style>
+.btn{
+    color: white !important;
+}
+</style>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Messages</h1>
+  <div class="col-md-12 flash-container" style="margin-top:50px">
+    <%= render "shared/flash", flash: flash %>
+  </div>
 
-<table>
+<table class="table" style="margin-top:100px">
   <thead>
     <tr>
-      <th>Content</th>
-      <th>Status</th>
-      <th colspan="3"></th>
+      <th class="col-xs-1">No</th>
+      <th class="col-lg-5">Content</th>
+      <th class="col-xs-1">Status</th>
+      <th class="col-xs-3">Added at</th>
+      <th class="col-xs-2">Action</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
+    <% @messages.each_with_index do |message, i| %>
       <tr>
-        <td><%= message.content %></td>
-        <td><%= message.status %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= i+1 %></td>
+        <td><a href="/messages/<%= message.id %>"><%= message.content.first(200) %></td></a>
+
+          <% if message.status == 0 %>
+            <td><p class="btn btn-warning"><%= get_status(message.status) %></p></td>
+          <% else %>
+            <td><p class="btn btn-info"><%= get_status(message.status) %></p></td>
+          <% end %>
+          <td><%= message.created_at%></td>
+          <td>
+            <% if message.status == 0 %>
+              <%= link_to 'Approve', message_path(message), {:class => "btn btn-success", :method => :put, data: {confirm: "Are you sure you want to approve this message ?"}} %>
+            <% end %>
+            <%= link_to 'Delete', message, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+          </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @messages, theme: 'twitter-bootstrap-3' %>
 <br>
-
-<%= link_to 'New Message', new_message_path %>

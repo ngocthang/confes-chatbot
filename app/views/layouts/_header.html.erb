@@ -13,6 +13,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li class="page-scroll">
+            <a href="/messages">Messages List</a>
+          </li>
+          <li class="page-scroll">
+            <a href="/messages/new">Add Message</a>
+          </li>
+          <li class="page-scroll">
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>  
+          </li>
         <% else %>
           <li class="page-scroll">
             <a href="/users/sign_in">Login</a>
