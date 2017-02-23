@@ -28,7 +28,7 @@ gem 'pry'
 
 gem 'devise', '3.4.1'
 
-gem 'config' 
+gem 'config'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
