@@ -4,7 +4,6 @@ class Message < ActiveRecord::Base
     token = Settings.cw_token
     raw_content = "TO ALL >>>"
     raw_content += "[info][title]New Confession (inlove)                                                   ※ Added at: #{created_at}[/title]"
-    raw_content += "\n"
     raw_content += content
     raw_content += "[/info]"
     msg_content = URI.encode(raw_content)
