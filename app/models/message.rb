@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   def post_msg
-    room_id = Settings.room.amway
+    room_id = Settings.room.div
     token = Settings.cw_token
     raw_content = "TO ALL >>>"
     raw_content += "[info][title]New Confession (inlove)                                                   ※ Added at: #{created_at}[/title]"
