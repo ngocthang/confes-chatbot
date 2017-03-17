@@ -5,6 +5,7 @@ class Message < ActiveRecord::Base
     raw_content = "TO ALL >>>"
     raw_content += "[info][title]New Confession (inlove)                                                   ※ Added at: #{created_at}[/title]"
     raw_content += content
+    raw_content += "[hr] Tâm sự với em tại đây nhé: https://goo.gl/IwkFKj"
     raw_content += "[/info]"
     msg_content = URI.encode(raw_content)
     uri = "https://api.chatwork.com/v2/rooms/#{room_id}/messages?body=#{msg_content}"
