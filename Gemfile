@@ -56,6 +56,17 @@ group :development do
   gem 'spring'
 end
 
+group :staging, :production do
+  gem "capistrano"
+  gem 'capistrano3-unicorn'
+  gem "capistrano-bundler"
+  gem "capistrano-rails"
+  gem "capistrano-rvm"
+  gem "capistrano-sidekiq"
+  gem "capistrano-passenger"
+  gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+end
+
 group :production do
   gem "pg"
 end
