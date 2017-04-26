@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :advertisements
   devise_for :users, skip: [:registrations]
   resources :messages
   root "messages#new"
+  put "change_news_status", to: "advertisements#change_status"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,46 @@
+<style>
+.btn{
+    color: white !important;
+}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>News</h1>
+  <div class="col-md-12 flash-container" style="margin-top:50px">
+    <%= render "shared/flash", flash: flash %>
+  </div>
+
+<table class="table" style="margin-top:100px">
+  <thead>
+    <tr>
+      <th class="col-xs-1">No</th>
+      <th class="col-lg-5">Content</th>
+      <th class="col-xs-1">Active</th>
+      <th class="col-xs-3">Added at</th>
+      <th class="col-xs-2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisements.each_with_index do |advertisement, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><a href="/messages/<%= advertisement.id %>"><%= advertisement.content.first(200) %></td></a>
+
+          <% if !advertisement.active %>
+            <td><p class="btn btn-warning"><%= advertisement.active %></p></td>
+          <% else %>
+            <td><p class="btn btn-info"><%= advertisement.active %></p></td>
+          <% end %>
+          <td><%= advertisement.created_at %></td>
+          <td>
+            <%= link_to 'Change Status', change_news_status_path(advertisement, id: advertisement.id), {:class => "btn btn-success", :method => :put, data: {confirm: "Are you sure ?"}} %>
+            <%= link_to 'Delete', advertisement, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @advertisements, theme: 'twitter-bootstrap-3' %>
+<br>
