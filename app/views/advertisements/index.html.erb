@@ -26,7 +26,7 @@
     <% @advertisements.each_with_index do |advertisement, i| %>
       <tr>
         <td><%= i+1 %></td>
-        <td><a href="/messages/<%= advertisement.id %>"><%= advertisement.content.first(200) %></td></a>
+        <td><a href="/advertisements/<%= advertisement.id %>/edit"><%= advertisement.content.first(200) %></td></a>
 
           <% if !advertisement.active %>
             <td><p class="btn btn-warning"><%= advertisement.active %></p></td>
